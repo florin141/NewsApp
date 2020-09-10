@@ -48,24 +48,29 @@ public class QueryUtils {
         try {
 
             JSONObject response = new JSONObject(newsJSON);
-            JSONArray features = response.getJSONObject("response").getJSONArray("results");
+            JSONArray results = response.getJSONObject("response").getJSONArray("results");
 
-            for (int i = 0; i < features.length(); i++) {
-                JSONObject jsonObject = features.getJSONObject(i);
+            for (int i = 0; i < results.length(); i++) {
+                JSONObject jsonObject = results.getJSONObject(i);
 
                 String sectionId = jsonObject.getString("sectionId");
                 String sectionName = jsonObject.getString("sectionName");
                 String publicationDate = jsonObject.getString("webPublicationDate");
                 String title = jsonObject.getString("webTitle");
                 String url = jsonObject.getString("webUrl");
-                //String author = jsonObject.getString("author");
+                String author = null;
+                try {
+                    author = jsonObject.getJSONArray("tags").
+                            getJSONObject(0).getString("webTitle");
+                }
+                catch (JSONException ignored) {}
 
                 // Create a new {@link News} object with the magnitude, location, time,
                 // and url from the JSON response.
                 News news = new News(sectionName, title, url);
                 news.setPublicationDate(publicationDate);
                 news.setSectionId(sectionId);
-                //news.setAuthorName(author);
+                news.setAuthorName(author);
 
                 // Add the new {@link News} to the list of newsList.
                 newsList.add(news);

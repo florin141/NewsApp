@@ -29,7 +29,7 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
 
     public static final String LOG_TAG = NewsActivity.class.getName();
 
-    private static final String GUARDIAN_API_API_KEY =
+    private static final String GUARDIAN_API_KEY =
             "test";
 
     private static final String GUARDIAN_API_REQUEST_URL =
@@ -124,8 +124,9 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // Append query parameter and its value. For example, the `format=geojson`
         uriBuilder.appendPath(section);
-        uriBuilder.appendQueryParameter("api-key",  GUARDIAN_API_API_KEY);
+        uriBuilder.appendQueryParameter("show-tags", "contributor");
         uriBuilder.appendQueryParameter("page-size",  pageSize);
+        uriBuilder.appendQueryParameter("api-key",  GUARDIAN_API_KEY);
 
         String u = uriBuilder.toString();
 
