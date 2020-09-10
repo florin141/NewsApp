@@ -38,7 +38,7 @@
                 android:layout_marginLeft="5dp"
                 android:fontFamily="@font/bebas_neue"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 tools:text="Environment" />
 
             <LinearLayout
@@ -70,7 +70,7 @@
                     android:layout_marginRight="5dp"
                     android:fontFamily="@font/bebas_neue"
                     android:textColor="@android:color/white"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     tools:text="2020-09-09T16:19:41Z" />
 
             </LinearLayout>
@@ -84,7 +84,7 @@
                 android:layout_alignParentBottom="true"
                 android:fontFamily="@font/bebas_neue"
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 tools:text="author name" />
 
         </RelativeLayout>
