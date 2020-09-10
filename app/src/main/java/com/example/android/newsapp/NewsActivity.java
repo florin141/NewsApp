@@ -2,6 +2,8 @@ package com.example.android.newsapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.LoaderManager;
 import android.content.Context;
@@ -35,11 +37,12 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
     private static final String GUARDIAN_API_REQUEST_URL =
             "https://content.guardianapis.com";
 
-    private NewsAdaptor mAdapter;
-
     /** TextView that is displayed when the list is empty */
     private TextView mEmptyStateTextView;
 
+    private RecyclerView recyclerView;
+
+    private NewsAdaptor mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,34 +50,18 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_news);
 
         // Find a reference to the {@link ListView} in the layout
-        ListView earthquakeListView = (ListView) findViewById(R.id.list);
+        recyclerView = findViewById(R.id.recycler_view);
 
         // Create a new {@link ArrayAdapter} of earthquakes
-        mAdapter = new NewsAdaptor(this, new ArrayList<News>());
+        mAdapter = new NewsAdaptor(new ArrayList<News>());
 
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
-        earthquakeListView.setAdapter(mAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setItemViewCacheSize(10);
 
         mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
-        earthquakeListView.setEmptyView(mEmptyStateTextView);
-
-        earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                // Find the current earthquake that was clicked on
-                News currentNews = mAdapter.getItem(position);
-
-                // Convert the String URL into a URI object (to pass into the Intent constructor)
-                Uri earthquakeUri = Uri.parse(currentNews.getUrl());
-
-                // Create a new intent to view the earthquake URI
-                Intent websiteIntent = new Intent(Intent.ACTION_VIEW, earthquakeUri);
-
-                // Send the intent to launch a new activity
-                startActivity(websiteIntent);
-            }
-        });
 
         ConnectivityManager cm =
                 (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -140,22 +127,25 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
         loadingIndicator.setVisibility(View.GONE);
 
         // Set empty state text to display "No earthquakes found."
-        mEmptyStateTextView.setText(R.string.no_news);
-
-        // Clear the adapter of previous earthquake data
-        mAdapter.clear();
+        if (newsList == null || newsList.isEmpty()) {
+            mEmptyStateTextView.setText(R.string.no_news);
+        }
+        else {
+            mEmptyStateTextView.setVisibility(View.GONE);
+        }
 
         // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
         if (newsList != null && !newsList.isEmpty()) {
-            mAdapter.addAll(newsList);
+            mAdapter = new NewsAdaptor(newsList);
+            recyclerView.setAdapter(mAdapter);
         }
     }
 
     @Override
     public void onLoaderReset(Loader<List<News>> loader) {
         // Loader reset, so we can clear out our existing data.
-        mAdapter.clear();
+        mAdapter = new NewsAdaptor(new ArrayList<News>());
     }
 
     @Override
