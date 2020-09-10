@@ -4,33 +4,81 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
-    <!-- Color for an earthquake with magnitude 0 and 2 -->
-    <color name="magnitude1">#4A7BA7</color>
-
-    <!-- Magnitude circle color for an earthquake with magnitude between 2 and 3 -->
-    <color name="magnitude2">#04B4B3</color>
-
-    <!-- Magnitude circle color for an earthquake with magnitude between 3 and 4 -->
-    <color name="magnitude3">#10CAC9</color>
-
-    <!-- Magnitude circle color for an earthquake with magnitude between 4 and 5 -->
-    <color name="magnitude4">#F5A623</color>
-
-    <!-- Magnitude circle color for an earthquake with magnitude between 5 and 6 -->
-    <color name="magnitude5">#FF7D50</color>
-
-    <!-- Magnitude circle color for an earthquake with magnitude between 6 and 7 -->
-    <color name="magnitude6">#FC6644</color>
-
-    <!-- Magnitude circle color for an earthquake with magnitude between 7 and 8 -->
-    <color name="magnitude7">#E75F40</color>
-
-    <!-- Magnitude circle color for an earthquake with magnitude between 8 and 9 -->
-    <color name="magnitude8">#E13A20</color>
-
-    <!-- Magnitude circle color for an earthquake with magnitude between 9 and 10 -->
-    <color name="magnitude9">#D93218</color>
-
-    <!-- Magnitude circle color for an earthquake with magnitude over 10 -->
-    <color name="magnitude10plus">#C03823</color>
+    // TODO: Choose a color for each section
+    // replaced -/ with _
+    <color name="about">#F5A6C0</color>
+    <color name="animals_farmed">#F5A6C0</color>
+    <color name="artanddesign">#F5A6C0</color>
+    <color name="australia_news">#F5A6C0</color>
+    <color name="better_business">#F5A6C0</color>
+    <color name="books">#F5A6C0</color>
+    <color name="business">#F5A6C0</color>
+    <color name="business_to_business">#F5A6C0</color>
+    <color name="cardiff">#F5A6C0</color>
+    <color name="childrens_books_site">#F5A6C0</color>
+    <color name="cities">#F5A6C0</color>
+    <color name="commentisfree">#F5A6C0</color>
+    <color name="community">#F5A6C0</color>
+    <color name="crosswords">#F5A6C0</color>
+    <color name="culture">#F5A6C0</color>
+    <color name="culture_network">#F5A6C0</color>
+    <color name="culture_professionals_network">#F5A6C0</color>
+    <color name="edinburgh">#F5A6C0</color>
+    <color name="education">#F5A6C0</color>
+    <color name="enterprise_network">#F5A6C0</color>
+    <color name="environment">#F5A6C0</color>
+    <color name="extra">#F5A6C0</color>
+    <color name="fashion">#F5A6C0</color>
+    <color name="film">#F5A6C0</color>
+    <color name="food">#F5A6C0</color>
+    <color name="football">#F5A6C0</color>
+    <color name="games">#F5A6C0</color>
+    <color name="global_development">#F5A6C0</color>
+    <color name="global_development_professionals_network">#F5A6C0</color>
+    <color name="government_computing_network">#F5A6C0</color>
+    <color name="guardian_professional">#F5A6C0</color>
+    <color name="healthcare_network">#F5A6C0</color>
+    <color name="help">#F5A6C0</color>
+    <color name="higher_education_network">#F5A6C0</color>
+    <color name="housing_network">#F5A6C0</color>
+    <color name="inequality">#F5A6C0</color>
+    <color name="info">#F5A6C0</color>
+    <color name="jobsadvice">#F5A6C0</color>
+    <color name="katine">#F5A6C0</color>
+    <color name="law">#F5A6C0</color>
+    <color name="leeds">#F5A6C0</color>
+    <color name="lifeandstyle">#F5A6C0</color>
+    <color name="local">#F5A6C0</color>
+    <color name="local_government_network">#F5A6C0</color>
+    <color name="media">#F5A6C0</color>
+    <color name="media_network">#F5A6C0</color>
+    <color name="membership">#F5A6C0</color>
+    <color name="money">#F5A6C0</color>
+    <color name="music">#F5A6C0</color>
+    <color name="news">#F5A6C0</color>
+    <color name="politics">#F5A6C0</color>
+    <color name="public_leaders_network">#F5A6C0</color>
+    <color name="science">#F5A6C0</color>
+    <color name="search">#F5A6C0</color>
+    <color name="small_business_network">#F5A6C0</color>
+    <color name="social_care_network">#F5A6C0</color>
+    <color name="social_enterprise_network">#F5A6C0</color>
+    <color name="society">#F5A6C0</color>
+    <color name="society_professionals">#F5A6C0</color>
+    <color name="sport">#F5A6C0</color>
+    <color name="stage">#F5A6C0</color>
+    <color name="teacher_network">#F5A6C0</color>
+    <color name="technology">#F5A6C0</color>
+    <color name="theguardian">#F5A6C0</color>
+    <color name="theobserver">#F5A6C0</color>
+    <color name="travel">#F5A6C0</color>
+    <color name="travel_offers">#F5A6C0</color>
+    <color name="tv_and_radio">#F5A6C0</color>
+    <color name="uk_news">#F5A6C0</color>
+    <color name="us_news">#F5A6C0</color>
+    <color name="voluntary_sector_network">#F5A6C0</color>
+    <color name="weather">#F5A6C0</color>
+    <color name="women_in_leadership">#F5A6C0</color>
+    <color name="working_in_development">#F5A6C0</color>
+    <color name="world">#F5A6C0</color>
 </resources>

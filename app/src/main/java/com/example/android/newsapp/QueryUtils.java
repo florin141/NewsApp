@@ -3,9 +3,6 @@ package com.example.android.newsapp;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.example.android.newsapp.models.News;
-import com.example.android.newsapp.models.Section;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,16 +53,19 @@ public class QueryUtils {
             for (int i = 0; i < features.length(); i++) {
                 JSONObject jsonObject = features.getJSONObject(i);
 
-                String id = jsonObject.getString("id");
-                String type = jsonObject.getString("type");
+                String sectionId = jsonObject.getString("sectionId");
                 String sectionName = jsonObject.getString("sectionName");
                 String publicationDate = jsonObject.getString("webPublicationDate");
                 String title = jsonObject.getString("webTitle");
                 String url = jsonObject.getString("webUrl");
+                //String author = jsonObject.getString("author");
 
                 // Create a new {@link News} object with the magnitude, location, time,
                 // and url from the JSON response.
-                News news = new News(id, type, sectionName, publicationDate, title, url);
+                News news = new News(sectionName, title, url);
+                news.setPublicationDate(publicationDate);
+                news.setSectionId(sectionId);
+                //news.setAuthorName(author);
 
                 // Add the new {@link News} to the list of newsList.
                 newsList.add(news);
@@ -80,48 +80,6 @@ public class QueryUtils {
 
         // Return the list of newsList
         return newsList;
-    }
-
-    private static ArrayList<Section> extractSectionFromJson(String newsJSON) {
-        // If the JSON string is empty or null, then return early.
-        if (TextUtils.isEmpty(newsJSON)) {
-            return null;
-        }
-
-        // Create an empty ArrayList that we can start adding newsList to
-        ArrayList<Section> sectionList = new ArrayList<>();
-
-        // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
-        // is formatted, a JSONException exception object will be thrown.
-        // Catch the exception so the app doesn't crash, and print the error message to the logs.
-        try {
-
-            JSONObject response = new JSONObject(newsJSON);
-            JSONArray features = response.getJSONObject("response").getJSONArray("results");
-
-            for (int i = 0; i < features.length(); i++) {
-                JSONObject jsonObject = features.getJSONObject(i);
-
-                String id = jsonObject.getString("id");
-                String title = jsonObject.getString("webTitle");
-
-                // Create a new {@link News} object with the magnitude, location, time,
-                // and url from the JSON response.
-                Section section = new Section(id, title);
-
-                // Add the new {@link News} to the list of newsList.
-                sectionList.add(section);
-            }
-
-        } catch (JSONException e) {
-            // If an error is thrown when executing any of the above statements in the "try" block,
-            // catch the exception here, so the app doesn't crash. Print a log message
-            // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing the News JSON results", e);
-        }
-
-        // Return the list of newsList
-        return sectionList;
     }
 
     /**
@@ -216,24 +174,5 @@ public class QueryUtils {
         }
 
         return extractNewsFromJson(jsonResponse);
-    }
-
-    /**
-     * Query the Guardian API and return a list of {@link Section} objects.
-     */
-    public static List<Section> fetchSectionData(String requestUrl) {
-        // Create URL object
-        URL url = createUrl(requestUrl);
-
-        // Perform HTTP request to the URL and receive a JSON response back
-        String jsonResponse = null;
-        try {
-            Thread.sleep(2000);
-            jsonResponse = makeHttpRequest(url);
-        } catch (IOException | InterruptedException e) {
-            Log.e(LOG_TAG, "Problem making the HTTP request.", e);
-        }
-
-        return extractSectionFromJson(jsonResponse);
     }
 }

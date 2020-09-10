@@ -7,18 +7,18 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.example.android.newsapp.models.News;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +29,11 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
 
     public static final String LOG_TAG = NewsActivity.class.getName();
 
+    private static final String GUARDIAN_API_API_KEY =
+            "test";
+
     private static final String GUARDIAN_API_REQUEST_URL =
-            "https://content.guardianapis.com/search?q=tag=environment&from-date=2020-09-09&api-key=test";
+            "https://content.guardianapis.com";
 
     private NewsAdaptor mAdapter;
 
@@ -101,7 +104,32 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
         // Create a new loader for the given URL
-        return new NewsLoader(this, GUARDIAN_API_REQUEST_URL);
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
+        String section = sharedPrefs.getString(
+                getString(R.string.settings_section_key),
+                getString(R.string.settings_section_default));
+
+        // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
+        String pageSize = sharedPrefs.getString(
+                getString(R.string.settings_page_size_key),
+                getString(R.string.settings_page_size_default));
+
+        // parse breaks apart the URI string that's passed into its parameter
+        Uri baseUri = Uri.parse(GUARDIAN_API_REQUEST_URL);
+
+        // buildUpon prepares the baseUri that we just parsed so we can add query parameters to it
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        // Append query parameter and its value. For example, the `format=geojson`
+        uriBuilder.appendPath(section);
+        uriBuilder.appendQueryParameter("api-key",  GUARDIAN_API_API_KEY);
+        uriBuilder.appendQueryParameter("page-size",  pageSize);
+
+        String u = uriBuilder.toString();
+
+        return new NewsLoader(this, u);
     }
 
     @Override
