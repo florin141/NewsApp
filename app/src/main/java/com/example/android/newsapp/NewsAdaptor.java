@@ -57,6 +57,9 @@ public class NewsAdaptor extends ArrayAdapter<News> {
         return convertView;
     }
 
+    // For now it generates a random color for based on the sectionId
+    // The idea here would be to have a set color for each
+    // section, i.e. for environment green and so on
     public int getRandomColor(News news) {
         Random rnd = new Random();
 

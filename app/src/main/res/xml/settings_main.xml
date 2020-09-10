@@ -7,12 +7,12 @@
         android:inputType="numberDecimal"
         android:key="@string/settings_page_size_key"
         android:selectAllOnFocus="true"
-        android:summary="Modify the number of items displayed per page"
+        android:summary="@string/settings_page_size_summary"
         android:title="@string/settings_page_size_label" />
 
     <ListPreference
         android:title="@string/settings_section_label"
-        android:summary="Select the kind section that you would like to see"
+        android:summary="@string/settings_section_summary"
         android:key="@string/settings_section_key"
         android:defaultValue="@string/settings_section_default"
         android:entries="@array/listArray"
